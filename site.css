@@ -1,5 +1,8 @@
-body, html {
-    font-family: 'Lora', serif;
+* {
+  font-family: 'Nora Sans', sans-serif;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-text-size-adjust: 100%;
 }
 /* entire container, keeps perspective */
 .flip-container {
