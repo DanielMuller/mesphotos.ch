@@ -100,6 +100,12 @@ header img {
 a, a:visited, a:hover, a:active, a:link {
     color:inherit;
 }
+a, a:visited, a:active, a:link {
+    text-decoration:none;
+}
+a:hover {
+   text-decoration:underline;
+}
 .author {
     color: white;
     font-size: 28px;
