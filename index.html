@@ -1,74 +1,489 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>MesPhotos</title>
-<link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-<link href='site.css' rel='stylesheet' type='text/css'>
-<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-<link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196">
-<link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
-<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="msapplication-TileImage" content="/mstile-144x144.png">
-</head>
-<body>
-<header>
-<img src="img/icon.png" />mesphotos.ch
-</header>
-<div id="main">
-    <a href="https://willy.mesphotos.ch">
-    <div id="willy" class="flip-container" ontouchstart="this.classList.toggle('hover');">
-        <div class="flipper">
-            <div class="front">
-            <div class="author">Willy</div>
+<!doctype html>
+<html amp lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <title>MesPhotos</title>
+    <link rel="canonical" href="http://example.ampproject.org/article-metadata.html" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+    <style amp-custom>
+* {
+  font-family: 'Nora Sans', sans-serif;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+body, html {
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  background-color: white;
+}
+a, a:visited, a:hover, a:active, a:link {
+    color:inherit;
+}
+a, a:visited, a:active, a:link {
+    text-decoration:none;
+}
+a:hover {
+   text-decoration:none;
+}
+
+.wrapper {
+  display: flex;
+  text-align: center;
+  width:100vw;
+  height:100vh;
+}
+
+.wrapper > * {
+  flex: 1;
+}
+
+.main {
+  position:relative;
+/*  padding: 2em;*/
+}
+.main .background {
+  background: #fff no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
+/*  filter: grayscale(20%) opacity(70%); */
+  width:100%;
+  height:100%;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  z-index: 0;
+}
+.main .content-wrapper {
+  position:relative;
+  display:flex;
+  width:100%;
+  height:100%;
+  box-sizing: border-box;
+  justify-content: center;
+  z-index:2;
+}
+.main .content-wrapper .content {
+  align-self: center;
+  width:70%;
+  height:70%;
+  background: rgba(255,255,255, .7) no-repeat center center;
+  overflow: hidden;
+  box-shadow: 0px 0px 1em rgba(0,0,0,.5);
+  border-radius:6px;
+  padding:1em;
+  text-align:left;
+}
+.content-1 {
+  order:1;
+}
+.content-1 .background {
+  background-image: url('images/willy_background.jpg');
+}
+@supports (-webkit-appearance:none){
+  .content-1 .background {
+    background-image: url('images/willy_background.webp');
+  }
+}
+@media screen and (max-width: 1920px) {
+  .content-1 .background {
+    background-image: url('images/willy_background-1920px.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-1 .background {
+      background-image: url('images/willy_background-1920px.webp');
+    }
+  }
+}
+@media screen and (max-width: 1920px) and (min-resolution: 2dppx) {
+  .content-1 .background {
+    background-image: url('images/willy_background-1920px-2x.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-1 .background {
+      background-image: url('images/willy_background-1920px-2x.webp');
+    }
+  }
+}
+@media screen and (max-width: 1920px) and (min-resolution: 3dppx) {
+  .content-1 .background {
+    background-image: url('images/willy_background-1920px-3x.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-1 .background {
+      background-image: url('images/willy_background-1920px-3x.webp');
+    }
+  }
+}
+@media screen and (max-width: 1280px) {
+  .content-1 .background {
+    background-image: url('images/willy_background-1280px.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-1 .background {
+      background-image: url('images/willy_background-1280px.webp');
+    }
+  }
+}
+@media screen and (max-width: 1280px) and (min-resolution: 2dppx) {
+  .content-1 .background {
+    background-image: url('images/willy_background-1280px-2x.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-1 .background {
+      background-image: url('images/willy_background-1280px-2x.webp');
+    }
+  }
+}
+@media screen and (max-width: 1280px) and (min-resolution: 3dppx) {
+  .content-1 .background {
+    background-image: url('images/willy_background-1280px-3x.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-1 .background {
+      background-image: url('images/willy_background-1280px-3x.webp');
+    }
+  }
+}
+@media screen and (max-width: 720px) {
+  .content-1 .background {
+    background-image: url('images/willy_background-720px.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-1 .background {
+      background-image: url('images/willy_background-720px.webp');
+    }
+  }
+}
+@media screen and (max-width: 720px) and (min-resolution: 2dppx) {
+  .content-1 .background {
+    background-image: url('images/willy_background-720px-2x.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-1 .background {
+      background-image: url('images/willy_background-720px-2x.webp');
+    }
+  }
+}
+@media screen and (max-width: 720px) and (min-resolution: 3dppx) {
+  .content-1 .background {
+    background-image: url('images/willy_background-720px-3x.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-1 .background {
+      background-image: url('images/willy_background-720px-3x.webp');
+    }
+  }
+}
+@media screen and (max-width: 360px) {
+  .content-1 .background {
+    background-image: url('images/willy_background-360px.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-1 .background {
+      background-image: url('images/willy_background-360px.webp');
+    }
+  }
+}
+@media screen and (max-width: 360px) and (min-resolution: 2dppx) {
+  .content-1 .background {
+    background-image: url('images/willy_background-360px-2x.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-1 .background {
+      background-image: url('images/willy_background-360px-2x.webp');
+    }
+  }
+}
+@media screen and (max-width: 360px) and (min-resolution: 3dppx) {
+  .content-1 .background {
+    background-image: url('images/willy_background-360px-3x.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-1 .background {
+      background-image: url('images/willy_background-360px-3x.webp');
+    }
+  }
+}
+
+.content-2 {
+  order:2;
+}
+.content-2 .background {
+  background-image: url('images/daniel_background.jpg');
+}
+@supports (-webkit-appearance:none){
+  .content-2 .background {
+    background-image: url('images/daniel_background.webp');
+  }
+}
+@supports (-webkit-appearance:none){
+  .content-2 .background {
+    background-image: url('images/daniel_background.webp');
+  }
+}
+@media screen and (max-width: 1920px) {
+  .content-2 .background {
+    background-image: url('images/daniel_background-1920px.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-2 .background {
+      background-image: url('images/daniel_background-1920px.webp');
+    }
+  }
+}
+@media screen and (max-width: 1920px) and (min-resolution: 2dppx) {
+  .content-2 .background {
+    background-image: url('images/daniel_background-1920px-2x.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-2 .background {
+      background-image: url('images/daniel_background-1920px-2x.webp');
+    }
+  }
+}
+@media screen and (max-width: 1920px) and (min-resolution: 3dppx) {
+  .content-2 .background {
+    background-image: url('images/daniel_background-1920px-3x.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-2 .background {
+      background-image: url('images/daniel_background-1920px-3x.webp');
+    }
+  }
+}
+@media screen and (max-width: 1280px) {
+  .content-2 .background {
+    background-image: url('images/daniel_background-1280px.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-2 .background {
+      background-image: url('images/daniel_background-1280px.webp');
+    }
+  }
+}
+@media screen and (max-width: 1280px) and (min-resolution: 2dppx) {
+  .content-2 .background {
+    background-image: url('images/daniel_background-1280px-2x.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-2 .background {
+      background-image: url('images/daniel_background-1280px-2x.webp');
+    }
+  }
+}
+@media screen and (max-width: 1280px) and (min-resolution: 3dppx) {
+  .content-2 .background {
+    background-image: url('images/daniel_background-1280px-3x.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-2 .background {
+      background-image: url('images/daniel_background-1280px-3x.webp');
+    }
+  }
+}
+@media screen and (max-width: 720px) {
+  .content-2 .background {
+    background-image: url('images/daniel_background-720px.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-2 .background {
+      background-image: url('images/daniel_background-720px.webp');
+    }
+  }
+}
+@media screen and (max-width: 720px) and (min-resolution: 2dppx) {
+  .content-2 .background {
+    background-image: url('images/daniel_background-720px-2x.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-2 .background {
+      background-image: url('images/daniel_background-720px-2x.webp');
+    }
+  }
+}
+@media screen and (max-width: 720px) and (min-resolution: 3dppx) {
+  .content-2 .background {
+    background-image: url('images/daniel_background-720px-3x.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-2 .background {
+      background-image: url('images/daniel_background-720px-3x.webp');
+    }
+  }
+}
+@media screen and (max-width: 360px) {
+  .content-2 .background {
+    background-image: url('images/daniel_background-360px.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-2 .background {
+      background-image: url('images/daniel_background-360px.webp');
+    }
+  }
+}
+@media screen and (max-width: 360px) and (min-resolution: 2dppx) {
+  .content-2 .background {
+    background-image: url('images/daniel_background-360px-2x.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-2 .background {
+      background-image: url('images/daniel_background-360px-2x.webp');
+    }
+  }
+}
+@media screen and (max-width: 360px) and (min-resolution: 3dppx) {
+  .content-2 .background {
+    background-image: url('images/daniel_background-360px-3x.jpg');
+  }
+  @supports (-webkit-appearance:none){
+    .content-2 .background {
+      background-image: url('images/daniel_background-360px-3x.webp');
+    }
+  }
+}
+div.author {
+  display:flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+div.author .avatar {
+  max-width: 200px;
+  max-height: 200px;
+  width:10vw;
+  height:10vw;
+  min-width:100px;
+  min-height:100px;
+  border-radius:50%;
+  border: 1px solid #000;
+  box-shadow: 0px 0px 4px rgba(0,0,0,1);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  overflow: hidden;
+  margin-right: 1em;
+  flex: 0 0 10vw;
+}
+.avatar.willy {
+  background-image: url('images/willy_profile.jpg');
+}
+.avatar.daniel {
+  background-image: url('images/daniel_profile.jpg');
+}
+div.author .profile {
+  flex: 1 100%;
+}
+div.author .profile div.name {
+  font-size: 2em;
+  font-style: italic;
+  white-space: nowrap;
+}
+.content .summary {
+  min-width: 250px;
+  max-width: 80%;
+  margin:auto;
+}
+ul {
+  list-style-image: url('images/dot.png');
+}
+@media all and (orientation: portrait) {
+  .wrapper {
+    flex-direction: column;
+  }
+}
+@media all and (orientation: landscape) {
+  .wrapper {
+    flex-direction: row;
+  }
+}
+@media all and (min-width: 1200px) {
+  body, html {
+    font-size:18px;
+  }
+}
+@media all and (max-width: 1199px) and (min-width: 480px) and (orientation: portrait) {
+  body, html {
+    font-size:2vw;
+  }
+}
+@media all and (max-width: 1199px) and (min-width: 480px) and (orientation: landscape) {
+  body, html {
+    font-size:1.5vw;
+  }
+}
+@media all and (max-width: 479px) {
+  body, html {
+    font-size:10px;
+  }
+}
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <main class="main content-1">
+        <div class="background"></div>
+        <div class="content-wrapper">
+          <div class="content">
+            <a href="https://willy.mesphotos.ch"><div class="author">
+              <div class="avatar willy"></div>
+              <div class="profile">
+                <div class="name">Willy Muller</div>
+              </div>
+            </div></a>
+            <div class="summary">
+              <ul>
+                  <li>Montagne</li>
+                  <li>Randonnées</li>
+                  <li>Famille</li>
+                  <li>Voyages</li>
+              </ul>
             </div>
-            <div class="back">
-                <div class="text">
-                    <div class="title">Willy Muller</div>
-                    <img class="profile" src="img/willy_profile.jpg">
-                    <ul>
-                        <li>Montagne</li>
-                        <li>Randonnées</li>
-                        <li>Famille</li>
-                        <li>Voyages</li>
-                    </ul>
-                </div>
-            </div>
+          </div>
         </div>
-    </div>
-    </a>
-    <a href="https://daniel.mesphotos.ch">
-    <div id="daniel" class="flip-container" ontouchstart="this.classList.toggle('hover');">
-        <div class="flipper">
-            <div class="front">
-            <div class="author">Daniel</div>
+        </a>
+      </main>
+      <main class="main content-2">
+        <div class="background"></div>
+        <div class="content-wrapper">
+          <div class="content">
+            <a href="https://daniel.mesphotos.ch"><div class="author">
+              <div class="avatar daniel"></div>
+              <div class="profile">
+                <div class="name">Daniel Muller</div>
+              </div>
+            </div></a>
+            <div class="summary">
+              <ul>
+                <li>Voyages</li>
+                <li>Sport: Fottball, Hockey, Vélo</li>
+                <li>Mariages</li>
+                <li>Concerts</li>
+                <li>Paysages</li>
+              </ul>
             </div>
-            <div class="back">
-                <div class="text">
-                <div class="title">Daniel Muller</div>
-                    <img class="profile" src="img/daniel_profile.jpg">
-                    <ul>
-                        <li>Voyages</li>
-                        <li>Sport: Fottball, Hockey, Vélo</li>
-                        <li>Mariages</li>
-                        <li>Concerts</li>
-                        <li>Paysages</li>
-                    </ul>
-                </div>
-            </div>
+          </div>
         </div>
+      </main>
     </div>
-    </a>
-</div>
-</body>
+  </body>
 </html>

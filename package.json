@@ -1,0 +1,39 @@
+{
+  "name": "mesphotos.ch",
+  "version": "1.0.0",
+  "description": "This is a single html page serving as jump-in point for the associaeted sub domains.",
+  "main": "index.html",
+  "scripts": {
+    "local": "python -m SimpleHTTPServer",
+    "optimize:html": "mkdir -p public;./node_modules/.bin/html-minifier -o public/index.html -c .html-minifier-config.json index.html",
+    "images": "gulp images",
+    "build": "npm run optimize:html && npm run images",
+    "deploy": "npm run images && npm run optimize:html && npm run s3_sync_html && npm run s3_sync_images && npm run s3_sync_webp",
+    "s3_sync_html": "aws --region eu-central-1 --profile mesphotos s3 sync --delete --exclude '*' --include '*.html' --include '*.xml' --cache-control 'max-age=31536000' --storage-class REDUCED_REDUNDANCY --acl public-read public/ s3://mesphotos.ch/",
+    "s3_sync_images": "aws --region eu-central-1 --profile mesphotos s3 sync --delete  --exclude '*.webp' --exclude '*.html' --exclude '*.xml' --exclude '.gitkeep' --cache-control 'max-age=31536000' --storage-class REDUCED_REDUNDANCY --acl public-read public/ s3://mesphotos.ch/",
+    "s3_sync_webp": "aws --region eu-central-1 --profile mesphotos s3 sync --delete  --exclude '*' --include '*.webp' --content-type 'image/webp' --cache-control 'max-age=31536000' --storage-class REDUCED_REDUNDANCY --acl public-read public/ s3://mesphotos.ch/",
+    "cf_invalidate": "aws --profile mesphotos cloudfront create-invalidation --distribution-id EXLJEXNJZY93 --paths '/*'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielMuller/mesphotos.ch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanielMuller/mesphotos.ch/issues"
+  },
+  "homepage": "https://github.com/DanielMuller/mesphotos.ch#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-changed": "^2.0.0",
+    "gulp-clean": "^0.3.2",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-responsive": "^2.7.0",
+    "html-minifier": "^3.4.1",
+    "imagemin": "^5.2.2",
+    "imagemin-jpeg-recompress": "^5.1.0",
+    "imagemin-pngquant-gfw": "^0.2.0"
+  }
+}
